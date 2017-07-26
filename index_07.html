@@ -14,7 +14,7 @@
     <div role="main" class="ui-context">
         <p>我是内容1</p>
         <p><a href="#index2" data-transition="pop">index2</a></p>
-        <a class="ui-btn">我是按钮</a>
+        <a id="ajxtbtn" class="ui-btn">我是按钮</a>
         <input type="submit" value="我也是按钮">
     </div>
     <div data-role="footer">
@@ -35,5 +35,28 @@
 </div>
 <script src="js/jquery-1.11.1.js"></script>
 <script src="js/jquery.mobile-1.4.5.js"></script>
+<script>
+    $("#ajxtbtn").on("click", function() {
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/task/taskCreate",
+            contentType: "application/json; charset=utf-8",
+            data: {
+                "projectId":"09a98c44-756e-407a-8440-0f20931d6d4b",
+                "taskName":"test111"
+            },
+            dataType: "json",
+            success: function (message) {
+                if (message > 0) {
+                    alert("请求已提交！我们会尽快与您取得联系");
+                }
+            },
+            error: function (message) {
+                alert("提交数据失败！");
+            }
+        });
+    });
+</script>
 </body>
 </html>
